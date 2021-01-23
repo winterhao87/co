@@ -13,6 +13,14 @@ set_optimize("faster")  -- -O2
 set_warnings("all")     -- -Wall
 set_symbols("debug")    -- dbg symbols
 
+-- enable ssl
+-- set_config("ssl", "on")
+
+if is_config("ssl", "on", "true") then
+    add_defines("COSSL")
+    add_syslinks("ssl", "crypto")
+end
+
 if is_plat("macosx", "linux") then
     add_cxflags("-g3", "-Wno-narrowing")
     if is_plat("macosx") then
